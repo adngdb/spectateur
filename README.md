@@ -7,6 +7,8 @@ spectateur allows users to create their own reports, using the data provided by
 Users can modify the data returned by the API in any way they want using JavaScript. The resulting data
 is then rendered in a table or as a chart. Reports can then be saved and shared using the URL. 
 
+For example, here's a report showing the top signatures, top versions, and a table of the latest crash reports for the Firefox crashes of the last week: http://spectateur.lqbs.fr/#f49db2ae-337e-46b0-85f3-20967d58efa4
+
 Note: This is a **prototype**.
 
 ## Tools
