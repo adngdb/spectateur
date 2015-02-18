@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang=en>
+    <head>
+        <meta charset="utf-8">
+        <title>Spectateur - customizable reports</title>
+
+        <link rel="stylesheet" type="text/css" href="lib/select2/select2.css">
+        <link rel="stylesheet" type="text/css" href="lib/jsgrid/jsgrid.min.css">
+        <link rel="stylesheet" type="text/css" href="lib/jsgrid/jsgrid-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/tidy-table.css"> -->
+
+        <link rel="stylesheet" type="text/css" href="main.css">
+    </head>
+
+    <body>
+        <h1>spectateur</h1>
+
+        <section id="model" class="panel panel-default">
+            <header class="panel-heading">
+                <h2 class="panel-title">
+                    <span class="glyphicon glyphicon-hdd"></span>
+                    Model
+                </h2>
+            </header>
+
+            <div class="panel-body">
+                <form></form>
+
+                <p>
+                    Aggregations: <input type="text" name="_aggregations">
+                    <button type="button" class="btn btn-default option" id="new-line">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        New line
+                    </button>
+                </p>
+            </div>
+        </section>
+
+        <section id="controller" class="panel panel-default">
+            <header class="panel-heading">
+                <h2 class="panel-title">
+                    <span class="glyphicon glyphicon-fire"></span>
+                    Controller
+                </h2>
+            </header>
+
+            <div id="editor">var api = {
+    transform: function (data, callback) {
+        // Insert your code here. Transform the `data` object into anything
+        // you like.
+        var transformedData = [];
+
+        // Create a chart to show top signatures.
+        var signatures = [];
+        var counts = [];
+
+        for (var j = 0; j &lt; data.facets.signature.length &amp;&amp; j &lt; 20; j++) {
+            var term = data.facets.signature[j];
+            var shortSig = term.term;
+            if (shortSig.length > 20) {
+                shortSig = shortSig.substr(0, 17) + '&helip;';
+            }
+            signatures.push(shortSig);
+            counts.push(term.count);
+        }
+
+        transformedData.push({
+            name: 'Top signatures',
+            type: 'chart',
+            data: {
+                labels: signatures,
+                datasets: [{
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: counts
+                }]
+            },
+            options: {
+                bezierCurve: false
+            }
+        });
+
+        // Create a table to show reports.
+        var hits = [];
+        for (var i = 0; i &lt; data.hits.length; i++) {
+            var hit = data.hits[i];
+            hits.push({
+                'Crash id': hit.uuid,
+                'Product': hit.product,
+                'Version': hit.version,
+                'Build id': hit.build_id,
+                'Platform': hit.platform,
+            });
+        }
+        transformedData.push({
+            name: 'Reports',
+            type: 'table',
+            headers: [
+                {name: 'Crash id', type: "text", width: 300},
+                {name: 'Product', type: "text", width: 150},
+                {name: 'Version', type: "text", width: 68},
+                {name: 'Build id', type: "number", width: 150},
+                {name: 'Platform', type: "text", width: 150}
+            ],
+            data: hits
+        });
+
+        // Always keep this callback, its parameter is the transformed data.
+        callback(transformedData);
+    }
+};
+
+// Exports the api to the application environment. Do not remove.
+application.setInterface(api);</div>
+        </section>
+
+        <section id="controls">
+            <div>
+                <button type="button" class="btn btn-primary" id="run">
+                    <span class="glyphicon glyphicon-play-circle"></span>
+                    Run
+                </button>
+                <button type="button" class="btn btn-info" id="save">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    Save
+                </button>
+            </div>
+            <p id="status"></p>
+        </section>
+
+        <section id="view" class="panel panel-default">
+            <header class="panel-heading">
+                <h2 class="panel-title">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    View
+                </h2>
+            </header>
+
+            <div class="panel-body content">
+                <p>No data to show yet.</p>
+            </div>
+        </section>
+
+
+        <!-- Libraries -->
+        <script type="text/javascript" src="lib/jquery.js"></script>
+        <script type="text/javascript" src="lib/ace/ace.js"></script>
+        <script type="text/javascript" src="lib/jailed/jailed.js"></script>
+        <script type="text/javascript" src="lib/select2/select2.min.js"></script>
+        <script type="text/javascript" src="lib/jsgrid/jsgrid.min.js"></script>
+        <script type="text/javascript" src="lib/chart.js"></script>
+        <script type="text/javascript" src="lib/dynamic_form.js"></script>
+        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- <script type="text/javascript" src="lib/tidy-table.js"></script> -->
+
+        <!-- Application logic -->
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+body {
+    font-family: Verdana, sans-serif;
+    margin: auto;
+    width: 1000px;
+}
+
+#model fieldset {
+    padding: 10px 0;
+}
+#model .option {
+    float: right;
+}
+
+#editor {
+    height: 400px;
+}
+
+#view canvas {
+    width: 1000px;
+    height: 400px;
+}
+
+#controls {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.dynamic-line-delete {
+    position: relative;
+    top: 1px;
+    color: red;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    visibility: hidden;
+
+}
+.dynamic-line-delete:hover {
+    text-decoration: none;
+    color: red;
+}
+.dynamic-line-delete:before {
+    content: '';
+    visibility: visible;
+}
+
+.select2-container {
+    min-height: 24px;
+    margin-right: 10px;
+}
+
+.loader {
+    text-align: center;
+}
