@@ -5,7 +5,7 @@ Custom Reports for Crash Analysis, based on [Socorro](https://github.com/mozilla
 spectateur allows users to create their own reports, using the data provided by 
 [Socorro's public API](https://crash-stats.mozilla.com/api/). 
 Users can modify the data returned by the API in any way they want using JavaScript. The resulting data
-is then rendered in a table or as a chart. 
+is then rendered in a table or as a chart. Reports can then be saved and shared using the URL. 
 
 Note: This is a **prototype**.
 
