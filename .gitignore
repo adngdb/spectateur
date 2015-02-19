@@ -1,4 +1,1 @@
-api/include/config.php
-composer.phar
-composer.lock
-api/vendor/
+api/env/

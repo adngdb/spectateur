@@ -1,6 +1,0 @@
-{
-    "require": {
-        "slim/slim": "~2.5",
-        "rhumsaa/uuid": "~2.8"
-    }
-}
