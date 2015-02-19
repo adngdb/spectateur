@@ -1,0 +1,23 @@
+# sha256: TIOCn_g9QIteHUmVRyJlQR0sQUESKY8utLNZ2eRWM3M
+Flask==0.10.1
+
+# sha256: mQOH0s_4Pff-tA6dayhvJnkUQlhIAknL1HuI3Ak56IY
+Flask-SQLAlchemy==2.0
+
+# sha256: y7P8-NPjPfhhcJ7K-J2eZinP8KIXvChI8bQc0w02BRk
+itsdangerous==0.24
+
+# sha256: LiSsXQBNtXFJdqBKwOgMbfbkfpjDVMssDYL4h51Pj9s
+jinja2==2.7.3
+
+# sha256: pOwa_1m5WhS0XrLiN2GgF56YMZ2lp-t2tW6ozce4ccM
+markupsafe==0.23
+
+# sha256: wAr-yzAqmaT4PeybBVxNHMGWkm1iyNsBXWhDLfgRjKg
+psycopg2==2.6
+
+# sha256: 3jrATsqwp-CvZO7jCnHnI7pYhrlYIF9zVN1iQ52mA4k
+sqlalchemy==0.9.8
+
+# sha256: mpem_PhzkBcnSNqeUlBxCzUt_xjpeduSXSdhEs3Pp6w
+werkzeug==0.10
