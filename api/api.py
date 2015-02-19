@@ -1,12 +1,23 @@
 import uuid
+import os
 
 from flask import Flask, jsonify, request
 from flask.ext.sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config.from_object('settings_base')
-# app.config.from_envvar('SPECTATEUR_SETTINGS')
+
+app.config.setdefault('DEBUG', True)
+app.config.setdefault('SECRET_KEY', 'hahahahahahahahahahahahahahahaha')
+app.config.setdefault('SQLALCHEMY_DATABASE_URI', 'postgres://spectateur:aPassword@localhost/spectateur')
+app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', False)
+
+if os.environ.get('DATABASE_URL'):
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
+if os.environ.get('SECRET_KEY'):
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
 db = SQLAlchemy(app)
 
 
@@ -26,6 +37,11 @@ class Report(db.Model):
 
 
 # --- Views --- #
+@app.route('/')
+def home():
+    return 'Hello, world!'
+
+
 @app.route('/reports/<report_id>', methods=['GET'])
 def get_report(report_id):
     report = Report.query.filter_by(uuid=report_id).first_or_404()
