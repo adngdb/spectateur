@@ -1,7 +1,7 @@
 import uuid
 import os
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 
@@ -39,7 +39,7 @@ class Report(db.Model):
 # --- Views --- #
 @app.route('/')
 def home():
-    return 'Hello, world!'
+    return render_template('index.html')
 
 
 @app.route('/reports/<report_id>', methods=['GET'])

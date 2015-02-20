@@ -1,7 +1,7 @@
 $(function () {
-    var API_URL = './api/reports';
     var CRASHSTATS_API_URL = 'https://crash-stats.mozilla.com/api/SuperSearch/';
-    var SEARCH_FIELDS_URL = 'fields.json';
+    var API_URL = $('body').data('reports-url'); //'./api/reports';
+    var SEARCH_FIELDS_URL = $('body').data('fields-url');
 
     var model = $('#model form');
     var view = $('#view .content');
@@ -13,7 +13,7 @@ $(function () {
         e.preventDefault();
 
         view.empty();
-        view.append($('<div>', {class: 'loader'}).append($('<img>', {src: 'img/ajax-loader.gif'})));
+        view.append($('<div>', {class: 'loader'}).append($('<img>', {src: view.data('loader-url')})));
 
         Processor.get()
         .then(function success() {

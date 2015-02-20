@@ -1,1 +1,1 @@
-web: gunicorn api.api:app --log-file=-
+web: gunicorn spectateur.api:app --log-file=-

@@ -4,16 +4,18 @@
         <meta charset="utf-8">
         <title>Spectateur - customizable reports</title>
 
-        <link rel="stylesheet" type="text/css" href="lib/select2/select2.css">
-        <link rel="stylesheet" type="text/css" href="lib/jsgrid/jsgrid.min.css">
-        <link rel="stylesheet" type="text/css" href="lib/jsgrid/jsgrid-theme.min.css">
-        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
-        <!-- <link rel="stylesheet" type="text/css" href="css/tidy-table.css"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/select2/select2.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/jsgrid/jsgrid.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/jsgrid/jsgrid-theme.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
 
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
 
-    <body>
+    <body
+        data-fields-url="{{ url_for('static', filename='fields.json') }}"
+        data-reports-url="{{ url_for('create_report') }}"
+    >
         <h1>spectateur</h1>
 
         <section id="model" class="panel panel-default">
@@ -141,25 +143,25 @@ application.setInterface(api);</div>
                 </h2>
             </header>
 
-            <div class="panel-body content">
+            <div class="panel-body content"
+                data-loader-url="{{ url_for('static', filename='img/ajax-loader.gif') }}"
+            >
                 <p>No data to show yet.</p>
             </div>
         </section>
 
 
         <!-- Libraries -->
-        <script type="text/javascript" src="lib/jquery.js"></script>
-        <script type="text/javascript" src="lib/ace/ace.js"></script>
-        <script type="text/javascript" src="lib/jailed/jailed.js"></script>
-        <script type="text/javascript" src="lib/select2/select2.min.js"></script>
-        <script type="text/javascript" src="lib/jsgrid/jsgrid.min.js"></script>
-        <script type="text/javascript" src="lib/chart.js"></script>
-        <script type="text/javascript" src="lib/dynamic_form.js"></script>
-        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-
-        <!-- <script type="text/javascript" src="lib/tidy-table.js"></script> -->
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/jquery.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/ace/ace.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/jailed/jailed.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/select2/select2.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/jsgrid/jsgrid.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/chart.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/dynamic_form.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.min.js') }}"></script>
 
         <!-- Application logic -->
-        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
     </body>
 </html>
