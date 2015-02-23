@@ -54,3 +54,7 @@ body {
 .loader {
     text-align: center;
 }
+
+.toggle-collapse {
+    cursor: pointer;
+}

@@ -19,14 +19,18 @@
         <h1>spectateur</h1>
 
         <section id="model" class="panel panel-default">
-            <header class="panel-heading">
+            <header class="panel-heading toggle-collapse" data-toggle="collapse" data-target="#model .panel-body" aria-expanded="true">
                 <h2 class="panel-title">
                     <span class="glyphicon glyphicon-hdd"></span>
                     Model
+
+                    <small class="pull-right" data-text="click to show">
+                        click to hide
+                    </small>
                 </h2>
             </header>
 
-            <div class="panel-body">
+            <div class="panel-body collapse in">
                 <form></form>
 
                 <p>
@@ -40,14 +44,18 @@
         </section>
 
         <section id="controller" class="panel panel-default">
-            <header class="panel-heading">
+            <header class="panel-heading toggle-collapse" data-toggle="collapse" data-target="#editor" aria-expanded="true">
                 <h2 class="panel-title">
                     <span class="glyphicon glyphicon-fire"></span>
                     Controller
+
+                    <small class="pull-right" data-text="click to show">
+                        click to hide
+                    </small>
                 </h2>
             </header>
 
-            <div id="editor">var transform = function (data, callback) {
+            <div id="editor" class="collapse in">var transform = function (data, callback) {
     // Insert your code here. Transform the `data` object into anything
     // you like.
     var transformedData = [];
