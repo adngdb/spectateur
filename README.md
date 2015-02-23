@@ -27,5 +27,5 @@ This prototype works thanks to those excellent tools:
  
  ![](http://vignette3.wikia.nocookie.net/forgottenrealms/images/2/2c/Monster_Manual_5e_-_Beholder_-_p28.jpg/revision/latest/scale-to-width/1000?cb=20141109194926)
  
- *("spectateur" is one of the translation of the name "beholder" 
+ *("spectateur" is one of the translations of the name "beholder" 
  in French, see [Wikipédia](http://fr.wikipedia.org/wiki/Tyrann%C5%93il))*
