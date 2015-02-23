@@ -47,78 +47,79 @@
                 </h2>
             </header>
 
-            <div id="editor">var api = {
-    transform: function (data, callback) {
-        // Insert your code here. Transform the `data` object into anything
-        // you like.
-        var transformedData = [];
+            <div id="editor">var transform = function (data, callback) {
+    // Insert your code here. Transform the `data` object into anything
+    // you like.
+    var transformedData = [];
 
-        // Create a chart to show top signatures.
-        var signatures = [];
-        var counts = [];
+    // Create a chart to show top signatures.
+    var signatures = [];
+    var counts = [];
 
-        for (var j = 0; j &lt; data.facets.signature.length &amp;&amp; j &lt; 20; j++) {
-            var term = data.facets.signature[j];
-            var shortSig = term.term;
-            if (shortSig.length > 20) {
-                shortSig = shortSig.substr(0, 17) + '&helip;';
-            }
-            signatures.push(shortSig);
-            counts.push(term.count);
+    for (var j = 0; j &lt; data.facets.signature.length &amp;&amp; j &lt; 20; j++) {
+        var term = data.facets.signature[j];
+        var shortSig = term.term;
+        if (shortSig.length > 20) {
+            shortSig = shortSig.substr(0, 17) + '&hellip;';
         }
-
-        transformedData.push({
-            name: 'Top signatures',
-            type: 'chart',
-            data: {
-                labels: signatures,
-                datasets: [{
-                    fillColor: "rgba(151,187,205,0.2)",
-                    strokeColor: "rgba(151,187,205,1)",
-                    pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(151,187,205,1)",
-                    data: counts
-                }]
-            },
-            options: {
-                bezierCurve: false
-            }
-        });
-
-        // Create a table to show reports.
-        var hits = [];
-        for (var i = 0; i &lt; data.hits.length; i++) {
-            var hit = data.hits[i];
-            hits.push({
-                'Crash id': hit.uuid,
-                'Product': hit.product,
-                'Version': hit.version,
-                'Build id': hit.build_id,
-                'Platform': hit.platform,
-            });
-        }
-        transformedData.push({
-            name: 'Reports',
-            type: 'table',
-            headers: [
-                {name: 'Crash id', type: "text", width: 300},
-                {name: 'Product', type: "text", width: 150},
-                {name: 'Version', type: "text", width: 68},
-                {name: 'Build id', type: "number", width: 150},
-                {name: 'Platform', type: "text", width: 150}
-            ],
-            data: hits
-        });
-
-        // Always keep this callback, its parameter is the transformed data.
-        callback(transformedData);
+        signatures.push(shortSig);
+        counts.push(term.count);
     }
+
+    transformedData.push({
+        name: 'Top signatures',
+        type: 'chart',
+        data: {
+            labels: signatures,
+            datasets: [{
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                data: counts
+            }]
+        },
+        options: {
+            bezierCurve: false
+        }
+    });
+
+    // Create a table to show reports.
+    var hits = [];
+    for (var i = 0; i &lt; data.hits.length; i++) {
+        var hit = data.hits[i];
+        hits.push({
+            'Crash id': hit.uuid,
+            'Product': hit.product,
+            'Version': hit.version,
+            'Build id': hit.build_id,
+            'Platform': hit.platform,
+        });
+    }
+    transformedData.push({
+        name: 'Reports',
+        type: 'table',
+        headers: [
+            {name: 'Crash id', type: "text", width: 300},
+            {name: 'Product', type: "text", width: 150},
+            {name: 'Version', type: "text", width: 68},
+            {name: 'Build id', type: "number", width: 150},
+            {name: 'Platform', type: "text", width: 150}
+        ],
+        data: hits
+    });
+
+    // Always keep this callback, its parameter is the transformed data.
+    callback(transformedData);
 };
 
+
 // Exports the api to the application environment. Do not remove.
-application.setInterface(api);</div>
+application.setInterface({
+    transform: transform
+});</div>
         </section>
 
         <section id="controls">
