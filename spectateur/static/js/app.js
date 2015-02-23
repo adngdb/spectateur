@@ -230,7 +230,21 @@ $(function () {
                         canvas.width = 968;
                         canvas.height = 400;
                         var ctx = canvas.getContext('2d');
-                        var chart = new Chart(ctx).Line(set.data, set.options);
+
+                        var chartsMap = {
+                            line: 'Line',
+                            bar: 'Bar',
+                            radar: 'Radar',
+                            polar: 'PolarArea',
+                            pie: 'Pie',
+                            doughnut: 'Doughnut'
+                        };
+                        var chartType = set.chartType;
+                        if (!chartType) {
+                            chartType = 'line';
+                        }
+
+                        var chart = new Chart(ctx)[chartsMap[chartType]](set.data, set.options);
 
                         container.append(canvas);
                     }
