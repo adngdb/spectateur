@@ -16,148 +16,284 @@
         data-fields-url="{{ url_for('static', filename='fields.json') }}"
         data-reports-url="{{ url_for('create_report') }}"
     >
-        <h1>spectateur</h1>
-
-        <section id="model" class="panel panel-default">
-            <header class="panel-heading toggle-collapse" data-toggle="collapse" data-target="#model .panel-body" aria-expanded="true">
-                <h2 class="panel-title">
-                    <span class="glyphicon glyphicon-hdd"></span>
-                    Model
-
-                    <small class="pull-right" data-text="click to show">
-                        click to hide
-                    </small>
-                </h2>
-            </header>
-
-            <div class="panel-body collapse in">
-                <form></form>
-
-                <p>
-                    Aggregations: <input type="text" name="_aggregations">
-                    <button type="button" class="btn btn-default option" id="new-line">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        New line
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
                     </button>
-                </p>
-            </div>
-        </section>
+                    <a class="navbar-brand" href="#" data-target="home">Spectateur</a>
+                </div>
 
-        <section id="controller" class="panel panel-default">
-            <header class="panel-heading toggle-collapse" data-toggle="collapse" data-target="#editor" aria-expanded="true">
-                <h2 class="panel-title">
-                    <span class="glyphicon glyphicon-fire"></span>
-                    Controller
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" data-target="documentation">Documentation</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
-                    <small class="pull-right" data-text="click to show">
-                        click to hide
-                    </small>
-                </h2>
-            </header>
+        <div class="page" id="page-home">
+            <section id="model" class="panel panel-default">
+                <header class="panel-heading toggle-collapse" data-toggle="collapse" data-target="#model .panel-body" aria-expanded="true">
+                    <h2 class="panel-title">
+                        <span class="glyphicon glyphicon-hdd"></span>
+                        Model
 
-            <div id="editor" class="collapse in">var transform = function (data, callback) {
-    // Insert your code here. Transform the `data` object into anything
-    // you like.
-    var transformedData = [];
+                        <small class="pull-right" data-text="click to show">
+                            click to hide
+                        </small>
+                    </h2>
+                </header>
 
-    // Create a chart to show top signatures.
-    var signatures = [];
-    var counts = [];
+                <div class="panel-body collapse in">
+                    <form></form>
 
-    for (var j = 0; j &lt; data.facets.signature.length &amp;&amp; j &lt; 20; j++) {
-        var term = data.facets.signature[j];
-        var shortSig = term.term;
-        if (shortSig.length > 20) {
-            shortSig = shortSig.substr(0, 17) + '&hellip;';
+                    <p>
+                        Aggregations: <input type="text" name="_aggregations">
+                        <button type="button" class="btn btn-default option" id="new-line">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            New line
+                        </button>
+                    </p>
+                </div>
+            </section>
+
+            <section id="controller" class="panel panel-default">
+                <header class="panel-heading toggle-collapse" data-toggle="collapse" data-target="#editor" aria-expanded="true">
+                    <h2 class="panel-title">
+                        <span class="glyphicon glyphicon-fire"></span>
+                        Controller
+
+                        <small class="pull-right" data-text="click to show">
+                            click to hide
+                        </small>
+                    </h2>
+                </header>
+
+                <div id="editor" class="collapse in">var transform = function (data, callback) {
+        // Insert your code here. Transform the `data` object into anything
+        // you like.
+        var transformedData = [];
+
+        // Create a chart to show top signatures.
+        var signatures = [];
+        var counts = [];
+
+        for (var j = 0; j &lt; data.facets.signature.length &amp;&amp; j &lt; 20; j++) {
+            var term = data.facets.signature[j];
+            var shortSig = term.term;
+            if (shortSig.length > 20) {
+                shortSig = shortSig.substr(0, 17) + '&hellip;';
+            }
+            signatures.push(shortSig);
+            counts.push(term.count);
         }
-        signatures.push(shortSig);
-        counts.push(term.count);
-    }
 
-    transformedData.push({
-        name: 'Top signatures',
-        type: 'chart',
-        data: {
-            labels: signatures,
-            datasets: [{
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: counts
-            }]
-        },
-        options: {
-            bezierCurve: false
-        }
-    });
-
-    // Create a table to show reports.
-    var hits = [];
-    for (var i = 0; i &lt; data.hits.length; i++) {
-        var hit = data.hits[i];
-        hits.push({
-            'Crash id': hit.uuid,
-            'Product': hit.product,
-            'Version': hit.version,
-            'Build id': hit.build_id,
-            'Platform': hit.platform,
+        transformedData.push({
+            name: 'Top signatures',
+            type: 'chart',
+            data: {
+                labels: signatures,
+                datasets: [{
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: counts
+                }]
+            },
+            options: {
+                bezierCurve: false
+            }
         });
-    }
-    transformedData.push({
-        name: 'Reports',
-        type: 'table',
-        headers: [
-            {name: 'Crash id', type: "text", width: 300},
-            {name: 'Product', type: "text", width: 150},
-            {name: 'Version', type: "text", width: 68},
-            {name: 'Build id', type: "number", width: 150},
-            {name: 'Platform', type: "text", width: 150}
-        ],
-        data: hits
-    });
 
-    // Always keep this callback, its parameter is the transformed data.
+        // Create a table to show reports.
+        var hits = [];
+        for (var i = 0; i &lt; data.hits.length; i++) {
+            var hit = data.hits[i];
+            hits.push({
+                'Crash id': hit.uuid,
+                'Product': hit.product,
+                'Version': hit.version,
+                'Build id': hit.build_id,
+                'Platform': hit.platform,
+            });
+        }
+        transformedData.push({
+            name: 'Reports',
+            type: 'table',
+            headers: [
+                {name: 'Crash id', type: "text", width: 300},
+                {name: 'Product', type: "text", width: 150},
+                {name: 'Version', type: "text", width: 68},
+                {name: 'Build id', type: "number", width: 150},
+                {name: 'Platform', type: "text", width: 150}
+            ],
+            data: hits
+        });
+
+        // Always keep this callback, its parameter is the transformed data.
+        callback(transformedData);
+    };
+
+
+    // Exports the api to the application environment. Do not remove.
+    application.setInterface({
+        transform: transform
+    });</div>
+            </section>
+
+            <section id="controls">
+                <div>
+                    <button type="button" class="btn btn-primary" id="run">
+                        <span class="glyphicon glyphicon-play-circle"></span>
+                        Run
+                    </button>
+                    <button type="button" class="btn btn-info" id="save">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        Save
+                    </button>
+                </div>
+                <p id="status"></p>
+            </section>
+
+            <section id="view" class="panel panel-default">
+                <header class="panel-heading">
+                    <h2 class="panel-title">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        View
+                    </h2>
+                </header>
+
+                <div class="panel-body content"
+                    data-loader-url="{{ url_for('static', filename='img/ajax-loader.gif') }}"
+                >
+                    <p>No data to show yet.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="page" id="page-documentation">
+            <section>
+                <h2>Purpose</h2>
+
+                <p>When working on <a href="https://crash-stats.mozilla.com/">crash analysis</a>, it often happens that one needs to perform some specific logic on a data set to find the source of a problem or to understand it better. It is possible to solve this by querying the <a href="https://crash-stats.mozilla.com/api/">public API</a> and writing a script that will run locally. But that has some limitations: it requires working on the rendering of the data, it's hard to share the logic (and you might have written it with your favorite scripting language that others don't master as well), and it's hard to share the results.</p>
+
+                <p>Spectateur is a tool that tries to solve those problems. It lets you query our public API as you want, and then run any kind of logic on the data set you get. Spectateur also handles most of the rendering for you, all you need to do is to correctly format your data, and express what kind of display you want (table, line chart, bar chart... ). You can then very easily save your custom report and share it with others via a URL.</p>
+
+                <p>Spectateur's interface is split in 3 parts: the <code>Model</code> lets you interact with the public API and give you data, the <code>Controller</code> gives you the power of JavaScript to manipulate your data, and the <code>View</code> takes that data and makes it pretty.</p>
+
+                <h2>Model</h2>
+
+                <p>In its current form, Spectateur "only" allows you to query the <a href="https://crash-stats.mozilla.com/api/#SuperSearch">SuperSearch endpoint</a>. That means access to all the non-restricted data we have in its purest form. If you have ever used crash-stats' <a href="https://crash-stats.mozilla.com/search/">Super Search</a> page, you will find this familiar: it works about the same. To filter the data, pick a field, choose an operator, and set a value. If you need to aggregate the data (what used to be called "facets"), set the fields name in the Aggregations input box.</p>
+
+                <p>Example - <a href="https://spectateur.herokuapp.com/#e6f2a911-6e37-4dec-b87b-5cf5a6fcf399">See it live</a></p>
+
+                <p><img src="{{ url_for('static', filename='img/doc/model-1.png') }}" alt="" title="" class="img-thumbnail" /></p>
+
+                <h2>Controller</h2>
+
+                <p>The controller's code is executed in a protected sandbox, and it has some strong restrictions. For example, you cannot do any HTTP request. You also do not have access to the main page's scope. This is all for the sake of security.</p>
+
+                <p>In your code, you only need to keep this structure:</p>
+
+                <pre><code>var transform = function (data, callback) {
+    // Your code goes here!
+    // ...
+
     callback(transformedData);
 };
 
-
-// Exports the api to the application environment. Do not remove.
 application.setInterface({
     transform: transform
-});</div>
-        </section>
+});</code></pre>
 
-        <section id="controls">
-            <div>
-                <button type="button" class="btn btn-primary" id="run">
-                    <span class="glyphicon glyphicon-play-circle"></span>
-                    Run
-                </button>
-                <button type="button" class="btn btn-info" id="save">
-                    <span class="glyphicon glyphicon-floppy-disk"></span>
-                    Save
-                </button>
-            </div>
-            <p id="status"></p>
-        </section>
+                <p>In the <code>transform</code> function, you will get 2 parameters. <code>data</code> is an object containing what was returned by the model. <code>callback</code> is the function that the main page runs to store your data once you are done transforming it. <code>application.setInterface</code> is how you make your code accessible from the main page.</p>
 
-        <section id="view" class="panel panel-default">
-            <header class="panel-heading">
-                <h2 class="panel-title">
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                    View
-                </h2>
-            </header>
+                <p>The <code>transformedData</code> object you will generate must follow those rules:</p>
 
-            <div class="panel-body content"
-                data-loader-url="{{ url_for('static', filename='img/ajax-loader.gif') }}"
-            >
-                <p>No data to show yet.</p>
-            </div>
-        </section>
+                <ul>
+                    <li>it must be an array;</li>
+                    <li>each element of that array must be an object;</li>
+                    <li>each element must contain at least the keys <code>name</code>, <code>type</code> and <code>data</code>;</li>
+                    <li>depending on the rendering type, more keys are supported (and sometimes required).</li>
+                </ul>
+
+                <p>Each element of the array contains one dataset that will have one representation. The <code>name</code> key contains the name of the set (and will be used as the name of the tab in the view), <code>data</code> holds the dataset, and <code>type</code> controls the rendering you want to have for that data (see the chapter about the View for more).</p>
+
+                <p>Example - <a href="https://spectateur.herokuapp.com/#e6f2a911-6e37-4dec-b87b-5cf5a6fcf399">See it live</a></p>
+
+                <p><img src="{{ url_for('static', filename='img/doc/controller-1.png') }}" alt="" title="" class="img-thumbnail" /></p>
+
+                <h2>View</h2>
+
+                <p>The view supports several display modes. At the moment, you can show your data in a table or as a chart.</p>
+
+                <h3>Table</h3>
+
+                <pre><code>{
+    "name": "A table! A table! My data for a table!"
+    "type": "table",
+    "data": [
+        {'Foo': 'bar', 'Oof': 41},
+        {'Foo': 'bor', 'Oof': 42},
+    ],
+    "headers": [
+        {name: 'Foo', type: 'text'},
+        {name: 'Oof', type: 'number'},
+    ]
+}</code></pre>
+
+                <p>Tables are generated using the <a href="http://js-grid.com/">jsGrid</a> library (<a href="http://js-grid.com/docs/">documentation</a>).</p>
+
+                <p>Example - <a href="https://spectateur.herokuapp.com/#f9ad4b08-8079-491a-94a4-806354d9d801">See it live</a></p>
+
+                <p><img src="{{ url_for('static', filename='img/doc/view-table-1.png') }}" alt="" title="" class="img-thumbnail" /></p>
+
+                <h3>Chart</h3>
+
+                <pre><code>{
+    "name": "Hold the line!"
+    "type": "chart",
+    "chartType": "line",
+    "data": {
+        "labels":  ["Foo", "Bar"],
+        "datasets": [
+            {
+                "data": [41, 42]
+            }
+        ]
+    }
+}</code></pre>
+
+                <p>Charts are generated using the <a href="http://www.chartjs.org/">Chart.js</a> library (<a href="http://www.chartjs.org/docs/">documentation</a>). It provides 6 types of charts, all accessible using the <code>chartType</code> key:</p>
+
+                <ul>
+                    <li>line</li>
+                    <li>bar</li>
+                    <li>radar</li>
+                    <li>polar</li>
+                    <li>pie</li>
+                    <li>doughnut</li>
+                </ul>
+
+                <p>Note that for some of those, the expected data format changes quite a bit.</p>
+
+                <p>Example - <a href="https://spectateur.herokuapp.com/#72012252-22a8-4462-be5c-e6fb941ba74b">See it live</a></p>
+
+                <p><img src="{{ url_for('static', filename='img/doc/view-chart-1.png') }}" alt="" title="" class="img-thumbnail" /></p>
+
+                <h2>Controls</h2>
+
+                <p>Coming soon!</p>
+            </section>
+        </div>
 
         <footer>
             <p class="text-center">
