@@ -291,7 +291,9 @@ application.setInterface({
 
                 <h2>Controls</h2>
 
-                <p>Coming soon!</p>
+                <p><img src="{{ url_for('static', filename='img/doc/controls.png') }}" alt="" title="" class="img-thumbnail" /></p>
+
+                <p>The &quot;Run&quot; button starts the process of 1. fetching the data 2. processing the data and 3. rendering the data. There is no caching for the moment, so it re-downloads the data set every time. The &quot;Save&quot; button will save the model and controller you have set in a database, and attribute this custom report you created a unique URL. Once the data is saved, the URL will be updated with a UUID, and you will be able to share that URL with anyone to show your work. </p>
             </section>
         </div>
 
