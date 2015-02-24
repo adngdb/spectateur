@@ -65,6 +65,7 @@ $(function () {
 
     // Navigation.
     $('.navbar a').on('click', function (e) {
+        e.preventDefault();
         var target = $(this).data('target');
         $('.page').hide();
         $('#page-' + target).show();
