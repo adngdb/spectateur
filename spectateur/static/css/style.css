@@ -58,3 +58,13 @@ body {
 .toggle-collapse {
     cursor: pointer;
 }
+
+
+#model input {
+    width: 500px;
+    height: 30px;
+}
+#model label {
+    display: inline-block;
+    min-width: 120px;
+}

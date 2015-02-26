@@ -156,6 +156,8 @@ $(function () {
 
                 var url = CRASHSTATS_API_URL + prepareResultsQueryString();
 
+                $('#api-url').val(url);
+
                 $.ajax({
                     url: url,
                     success: function (data) {

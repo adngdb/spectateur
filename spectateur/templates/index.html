@@ -53,11 +53,17 @@
                     <form></form>
 
                     <p>
-                        Aggregations: <input type="text" name="_aggregations">
+                        <label for="aggregations">Aggregations: </label>
+                        <input type="text" name="_aggregations" id="aggregations">
+
                         <button type="button" class="btn btn-default option" id="new-line">
                             <span class="glyphicon glyphicon-plus"></span>
                             New line
                         </button>
+                    </p>
+                    <p>
+                        <label for="api-url">API URL: </label>
+                        <input type="text" id="api-url">
                     </p>
                 </div>
             </section>
@@ -192,6 +198,25 @@
                 <h2>Model</h2>
 
                 <p>In its current form, Spectateur "only" allows you to query the <a href="https://crash-stats.mozilla.com/api/#SuperSearch">SuperSearch endpoint</a>. That means access to all the non-restricted data we have in its purest form. If you have ever used crash-stats' <a href="https://crash-stats.mozilla.com/search/">Super Search</a> page, you will find this familiar: it works about the same. To filter the data, pick a field, choose an operator, and set a value. If you need to aggregate the data (what used to be called "facets"), set the fields name in the Aggregations input box.</p>
+
+                <p>The data returned by the Model, that you will get to manipulate in the Controller, is the same that the public API exposes. You can get an idea of what it is in this example request: <a href="https://crash-stats.mozilla.com/api/SuperSearch/?product=Firefox&amp;_results_number=1">https://crash-stats.mozilla.com/api/SuperSearch/?product=Firefox&amp;_results_number=1</a>. Here is an incomplete schema of the data structure: </p>
+
+                <pre><code>{
+    "hits": [
+        {
+            "uuid": "xxyyzz",
+            "product": "Firefox",
+            "version": "4.0",
+            "and": ["so", "on", "..."]
+        }
+    ],
+    "facets": {
+        "signature": [
+            { "term": "something", "count": 12 }
+        ]
+    },
+    "total": 42
+}</code></pre>
 
                 <p>Example - <a href="https://spectateur.herokuapp.com/#e6f2a911-6e37-4dec-b87b-5cf5a6fcf399">See it live</a></p>
 
