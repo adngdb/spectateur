@@ -2749,20 +2749,6 @@
 "name": "available virtual memory", 
 "extensible": true
 }, 
-"exploitability": {
-"multiple": true, 
-"valueType": "enum", 
-"values": [
-"high", 
-"normal", 
-"low", 
-"none", 
-"unknown", 
-"error"
-], 
-"name": "exploitability", 
-"extensible": true
-}, 
 "startup_time": {
 "multiple": true, 
 "valueType": "number", 
