@@ -2825,14 +2825,7 @@
 "values": null, 
 "name": "cpu usage flash process2", 
 "extensible": true
-}, 
-"email": {
-"multiple": true, 
-"valueType": "string", 
-"values": null, 
-"name": "email", 
-"extensible": true
-}, 
+},
 "plugin_hang_ui_duration": {
 "multiple": true, 
 "valueType": "number", 
@@ -3200,13 +3193,6 @@
 "valueType": "enum", 
 "values": null, 
 "name": "android cpu abi", 
-"extensible": true
-}, 
-"url": {
-"multiple": true, 
-"valueType": "string", 
-"values": null, 
-"name": "url", 
 "extensible": true
 }, 
 "frame_poison_size": {
