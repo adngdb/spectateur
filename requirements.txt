@@ -7,6 +7,7 @@ Flask-SQLAlchemy==2.0
 # sha256: y7P8-NPjPfhhcJ7K-J2eZinP8KIXvChI8bQc0w02BRk
 itsdangerous==0.24
 
+# sha256: DMtxotngdk-zq8Xcb3pE1dROMTdUW-iGm-_IrtwCh44
 gunicorn==19.0.0
 
 # sha256: LiSsXQBNtXFJdqBKwOgMbfbkfpjDVMssDYL4h51Pj9s
